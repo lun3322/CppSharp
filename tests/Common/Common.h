@@ -79,6 +79,7 @@ public:
     class NestedAbstract
     {
     public:
+        ~NestedAbstract();
         virtual int* abstractFunctionInNestedClass() = 0;
     };
 
@@ -253,6 +254,7 @@ public:
 class DLL_API AbstractFoo
 {
 public:
+    virtual ~AbstractFoo();
     virtual int pureFunction(int i = 0) = 0;
     virtual int pureFunction1() = 0;
     virtual int pureFunction2(bool* ok = 0) = 0;
@@ -291,6 +293,7 @@ typedef DerivedException Ex2;
 
 struct DLL_API Exception : public Foo
 {
+    virtual ~Exception();
     virtual Ex1* clone() = 0;
 };
 
@@ -543,7 +546,8 @@ namespace SomeNamespace
         class DLL_API AbstractClass
         {
         public:
-                virtual void AbstractMethod() = 0;
+            ~AbstractClass();
+            virtual void AbstractMethod() = 0;
         };
 }
 
@@ -1022,6 +1026,7 @@ public:
 class DLL_API DerivedClassAbstractVirtual : public DerivedClassVirtual
 {
 public:
+    ~DerivedClassAbstractVirtual();
     virtual int retInt(const Foo& foo) = 0;
 };
 
@@ -1262,6 +1267,7 @@ private:
 class DLL_API HasAbstractOperator
 {
 public:
+    ~HasAbstractOperator();
     virtual bool operator==(const HasAbstractOperator& other) = 0;
 };
 
@@ -1529,7 +1535,8 @@ struct BaseCovariant;
 typedef std::unique_ptr<BaseCovariant> PtrCovariant;
 
 struct BaseCovariant {
-  virtual PtrCovariant clone() const = 0;
+    virtual ~BaseCovariant();
+    virtual PtrCovariant clone() const = 0;
 };
 
 struct DerivedCovariant: public BaseCovariant {
